@@ -92,8 +92,8 @@ CURLcode Curl_pp_statemach(struct Curl_easy *data, struct pingpong *pp,
 /* initialize stuff to prepare for reading a fresh new response */
 void Curl_pp_init(struct Curl_easy *data, struct pingpong *pp);
 
-/* setup for the transfer */
-void Curl_pp_setup(struct pingpong *pp);
+/* setup for the transfer, cals *pp_init() */
+void Curl_pp_setup(struct Curl_easy *data, struct pingpong *pp);
 
 /* Returns timeout in ms. 0 or negative number means the timeout has already
    triggered */

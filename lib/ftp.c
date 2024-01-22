@@ -3191,7 +3191,7 @@ static CURLcode ftp_connect(struct Curl_easy *data,
     conn->bits.ftp_use_control_ssl = TRUE;
   }
 
-  Curl_pp_setup(pp); /* once per transfer */
+  Curl_pp_setup(data, pp); /* once per transfer */
 
   /* When we connect, we start in the state where we await the 220
      response */
@@ -3998,8 +3998,8 @@ static CURLcode ftp_do(struct Curl_easy *data, bool *done)
   struct ftp_conn *ftpc = &conn->proto.ftpc;
   struct pingpong *pp = &ftpc->pp;
 
-  /* init pingpong data. Done here and not in *_connect to make sure it gets
-     done even when the connection is reused */
+  /* Init pingpong data. Make sure it gets done even when the connection is
+     reused */
   Curl_pp_init(data, pp);
 
   *done = FALSE; /* default to false */

@@ -150,9 +150,10 @@ void Curl_pp_init(struct Curl_easy *data, struct pingpong *pp)
 }
 
 /* setup for the coming transfer */
-void Curl_pp_setup(struct pingpong *pp)
+void Curl_pp_setup(struct Curl_easy *data, struct pingpong *pp)
 {
   Curl_dyn_init(&pp->sendbuf, DYN_PINGPPONG_CMD);
+  Curl_pp_init(data, pp);
 }
 
 /***********************************************************************

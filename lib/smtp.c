@@ -1361,7 +1361,7 @@ static CURLcode smtp_connect(struct Curl_easy *data, bool *done)
   Curl_sasl_init(&smtpc->sasl, data, &saslsmtp);
 
   /* Initialise the pingpong layer */
-  Curl_pp_setup(pp);
+  Curl_pp_setup(data, pp);
 
   /* Parse the URL options */
   result = smtp_parse_url_options(conn);
@@ -1545,8 +1545,8 @@ static CURLcode smtp_do(struct Curl_easy *data, bool *done)
   pp = &data->conn->proto.smtpc.pp;
   *done = FALSE; /* default to false */
 
-  /* init pingpong data. Done here and not in *_connect to make sure it gets
-     done even when the connection is reused */
+  /* Init pingpong data. Sure it gets done even when the connection is
+     reused */
   Curl_pp_init(data, pp);
 
   /* Parse the custom request */
